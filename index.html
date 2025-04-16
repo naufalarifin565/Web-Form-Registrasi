@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Registration Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .registration-container {
+            background: #ffffff;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 600px;
+            transform: translateY(-20px);
+            animation: slideUp 0.5s ease forwards;
+        }
+
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            from {
+                opacity: 0;
+            }
+        }
+
+        h2 {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #4a5568;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            background: #f8fafc;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #4299e1;
+            box-shadow: 0 0 0 3px rgba(66,153,225,0.2);
+            background: #ffffff;
+        }
+
+        #suggestions {
+            position: absolute;
+            width: 100%;
+            max-height: 200px;
+            overflow-y: auto;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 100;
+            display: none;
+            margin-top: 5px;
+        }
+
+        .suggestion-item {
+            padding: 0.8rem 1rem;
+            cursor: pointer;
+            color: #2d3748;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid #edf2f7;
+        }
+
+        .suggestion-item:hover {
+            background: #ebf8ff;
+            transform: translateX(5px);
+        }
+
+        button {
+            background: #4299e1;
+            color: white;
+            padding: 0.9rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        button:hover {
+            background: #3182ce;
+            box-shadow: 0 4px 6px rgba(50,136,230,0.3);
+        }
+
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1em;
+        }
+
+        @media (max-width: 640px) {
+            .registration-container {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="registration-container">
+        <h2>📚 Academic Course Registration</h2>
+        <form>
+            <div class="form-group">
+                <label for="nama">Student Name</label>
+                <input type="text" id="nama" autocomplete="off" placeholder="Enter student name">
+                <div id="suggestions">
+                    <!-- Suggestions will be injected here -->
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="NRP">Student ID</label>
+                <input type="text" id="NRP" placeholder="Enter NRP">
+            </div>
+
+            <div class="form-group">
+                <label for="matkul">Select Course</label>
+                <select id="matkul">
+                    <option value="">Choose a course</option>
+                    <option value="Algoritma">Algorithms and Programming</option>
+                    <option value="Basis Data">Database Systems</option>
+                    <option value="Jaringan">Computer Networks</option>
+                    <option value="Web">Web Development</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="dosen">Select Lecturer</label>
+                <select id="dosen">
+                    <option value="">Choose a lecturer</option>
+                    <option value="Dr. Ahmad">Dr. Ahmad (Computer Science)</option>
+                    <option value="Dr. Budi">Dr. Budi (Information Systems)</option>
+                    <option value="Dr. Citra">Dr. Citra (Data Science)</option>
+                    <option value="Dr. Dian">Dr. Dian (Software Engineering)</option>
+                    <option value="Fajar Baskoro, S.Kom., M.T.">Fajar Baskoro, S.Kom., M.T. (Software Engineering)</option>
+                </select>
+            </div>
+
+            <button type="submit">Register Now ➔</button>
+        </form>
+    </div>
+
+    <script>
+        const names = [
+            "Andi Wijaya",
+            "Budi Santoso",
+            "Citra Lestari",
+            "Dewi Kurnia",
+            "Eka Pratama",
+            "Fajar Nugroho",
+            "Gita Maharani",
+            "Hadi Putra",
+            "Indah Permata",
+            "Joko Susilo"
+        ];
+
+        const namaInput = document.getElementById('nama');
+        const suggestionsDiv = document.getElementById('suggestions');
+
+        namaInput.addEventListener('input', function(e) {
+            const input = e.target.value.toLowerCase();
+            const filteredNames = names.filter(name => 
+                name.toLowerCase().includes(input)
+            );
+
+            suggestionsDiv.innerHTML = filteredNames.map(name => 
+                `<div class="suggestion-item">${name}</div>`
+            ).join('');
+
+            suggestionsDiv.style.display = input && filteredNames.length ? 'block' : 'none';
+        });
+
+        suggestionsDiv.addEventListener('click', function(e) {
+            if (e.target.classList.contains('suggestion-item')) {
+                namaInput.value = e.target.textContent;
+                suggestionsDiv.style.display = 'none';
+            }
+        });
+
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.form-group')) {
+                suggestionsDiv.style.display = 'none';
+            }
+        });
+
+        // Add smooth interactions for selects
+        document.querySelectorAll('select').forEach(select => {
+            select.addEventListener('focus', () => {
+                select.style.backgroundColor = '#fff';
+                select.parentNode.querySelector('label').style.color = '#4299e1';
+            });
+            
+            select.addEventListener('blur', () => {
+                select.style.backgroundColor = '#f8fafc';
+                select.parentNode.querySelector('label').style.color = '#4a5568';
+            });
+        });
+    </script>
+</body>
+</html>
